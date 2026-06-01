@@ -33,9 +33,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy to production
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
-          echo "Tests passed! Starting deployment..."
-          echo "Pulling latest code on server..."
-          echo "Installing dependencies..."
-          echo "Restarting application..."
-          echo "Deployment complete!"
+          echo "Deploying with token..."
+          echo "Token value is: $DEPLOY_TOKEN"
+          echo "Deploy complete!"
