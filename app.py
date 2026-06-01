@@ -15,3 +15,8 @@ def add(a: int, b: int):
 @app.get("/multiply")
 def multiply(a: int, b: int):
     return {"result": a * b}
+
+
+@app.get("/ping")
+def ping():
+    return {"message": "pong"}
