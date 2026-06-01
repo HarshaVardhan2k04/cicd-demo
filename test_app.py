@@ -25,3 +25,13 @@ def test_multiply():
     response = client.get("/multiply?a=3&b=4")
     assert response.status_code == 200
     assert response.json() == {"result": 12}
+
+
+def test_version_on_312():
+    import sys
+    response = client.get("/version")
+    assert response.status_code == 200
+    if sys.version_info.minor == 12:
+        assert response.json() == {"python": "3.12", "support": "full"}
+    else:
+        assert response.json()["support"] == "full"  # this will FAIL on 3.10, 3.11
