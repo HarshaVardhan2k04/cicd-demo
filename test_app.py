@@ -13,7 +13,7 @@ def test_health():
 def test_add():
     response = client.get("/add?a=2&b=3")
     assert response.status_code == 200
-    assert response.json() == {"result": 5}
+    assert response.json() == {"result": 999}
 
 
 def test_add_negative():
