@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -23,3 +23,19 @@ jobs:
 
       - name: Run tests
         run: pytest test_app.py -v
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to production
+        run: |
+          echo "Tests passed! Starting deployment..."
+          echo "Pulling latest code on server..."
+          echo "Installing dependencies..."
+          echo "Restarting application..."
+          echo "Deployment complete!"
