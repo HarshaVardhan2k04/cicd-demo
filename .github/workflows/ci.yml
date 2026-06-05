@@ -28,8 +28,18 @@ jobs:
       - name: Run tests
         run: pytest test_app.py -v
 
-  deploy:
+  docker:
     needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t cicd-demo .
+
+  deploy:
+    needs: [test, docker]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
 
