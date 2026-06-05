@@ -21,6 +21,7 @@ def test_add_negative():
     assert response.status_code == 200
     assert response.json() == {"result": 4}
 
+
 def test_multiply():
     response = client.get("/multiply?a=3&b=4")
     assert response.status_code == 200

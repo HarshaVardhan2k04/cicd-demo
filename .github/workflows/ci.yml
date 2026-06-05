@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Lint code
+        run: flake8 --select=E9,F63,F7,F82 app.py test_app.py
+
       - name: Run tests
         run: pytest test_app.py -v
 
